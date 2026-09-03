@@ -1,0 +1,80 @@
+# ── Кодировка и типы ────────────────────────────────────────────────────────
+AddDefaultCharset UTF-8
+
+<IfModule mod_mime.c>
+  # если сервер не знает эти типы, шрифт и манифест отдаются как «файл»
+  AddType font/woff2                  .woff2
+  AddType application/manifest+json   .webmanifest
+  AddType image/svg+xml               .svg
+  AddType image/x-icon                .ico
+  AddCharset UTF-8 .html .css .js .json .webmanifest .xml .txt
+</IfModule>
+
+# ── Сжатие ──────────────────────────────────────────────────────────────────
+# Картинки и woff2 уже сжаты, их жать повторно бессмысленно.
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml
+  AddOutputFilterByType DEFLATE application/javascript application/json
+  AddOutputFilterByType DEFLATE application/manifest+json application/xml
+  AddOutputFilterByType DEFLATE image/svg+xml
+</IfModule>
+
+# ── Кэширование ─────────────────────────────────────────────────────────────
+# Шрифты живут год: их содержимое под этим именем уже никогда не изменится.
+# Картинки — месяц: имена стабильные, но фото иногда заменяются.
+# CSS и JS — сутки: правок нет системы версионирования, дольше держать опасно.
+# HTML — всегда перепроверять, иначе правки текста не дойдут до вернувшихся.
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresDefault                          "access plus 1 day"
+  ExpiresByType font/woff2                "access plus 1 year"
+  ExpiresByType image/jpeg                "access plus 30 days"
+  ExpiresByType image/png                 "access plus 30 days"
+  ExpiresByType image/svg+xml             "access plus 30 days"
+  ExpiresByType image/x-icon              "access plus 30 days"
+  ExpiresByType text/css                  "access plus 1 day"
+  ExpiresByType application/javascript    "access plus 1 day"
+  ExpiresByType text/html                 "access plus 0 seconds"
+</IfModule>
+
+<IfModule mod_headers.c>
+  <FilesMatch "\.woff2$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  <FilesMatch "\.(jpg|jpeg|png|svg|ico)$">
+    Header set Cache-Control "public, max-age=2592000"
+  </FilesMatch>
+  <FilesMatch "\.(css|js)$">
+    Header set Cache-Control "public, max-age=86400"
+  </FilesMatch>
+  <FilesMatch "\.html$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+  Header unset ETag
+</IfModule>
+FileETag None
+
+# ── Доступ ──────────────────────────────────────────────────────────────────
+# Файлы статистики и служебные заметки не должны открываться из браузера
+<IfModule mod_authz_core.c>
+  <FilesMatch "\.(jsonl|md)$">
+    Require all denied
+  </FilesMatch>
+</IfModule>
+<IfModule !mod_authz_core.c>
+  <FilesMatch "\.(jsonl|md)$">
+    Order allow,deny
+    Deny from all
+  </FilesMatch>
+</IfModule>
+
+Options -Indexes
+
+# ── После включения SSL в панели Beget раскомментируйте ─────────────────────
+# <IfModule mod_rewrite.c>
+#   RewriteEngine On
+#   RewriteCond %{HTTPS} !=on
+#   RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+#   RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+#   RewriteRule ^ https://%1%{REQUEST_URI} [L,R=301]
+# </IfModule>

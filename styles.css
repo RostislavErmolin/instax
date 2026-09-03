@@ -1,0 +1,269 @@
+:root{
+  --paper:#F4F3EF; --surface:#FFFFFF; --surface-2:#EDEBE5;
+  --ink:#17191E; --ink-2:#4B4F58; --muted:#7A7F89; --line:#DEDCD5;
+  --accent:#E14A33; --accent-ink:#FFFFFF; --gift:#1F8A5B;
+  --s-blue:#2E7BD4; --s-green:#3FAE6A; --s-yellow:#F0B429; --s-red:#E14A33;
+  --shadow:0 1px 2px rgba(23,25,30,.05), 0 12px 28px -18px rgba(23,25,30,.35);
+  --radius:14px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#131519; --surface:#1B1E23; --surface-2:#22262C;
+    --ink:#F2F1ED; --ink-2:#C3C6CC; --muted:#8C919B; --line:#2E333A;
+    --accent:#FF6A50; --accent-ink:#1A1005; --gift:#4CC38A;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 14px 30px -18px rgba(0,0,0,.8);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#131519; --surface:#1B1E23; --surface-2:#22262C;
+  --ink:#F2F1ED; --ink-2:#C3C6CC; --muted:#8C919B; --line:#2E333A;
+  --accent:#FF6A50; --accent-ink:#1A1005; --gift:#4CC38A;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 14px 30px -18px rgba(0,0,0,.8);
+}
+
+*{box-sizing:border-box}
+/* iOS в альбомной ориентации сам увеличивает шрифт — отключаем */
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+/* атрибут hidden должен побеждать: .out-line и подобные задают display:flex
+   и иначе перебивают браузерное [hidden]{display:none} */
+[hidden]{display:none!important}
+/* .is-blank — элемент невидим, но место под него остаётся:
+   иначе калькулятор скачет по высоте при переключении кадров */
+.is-blank{visibility:hidden}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Golos Text","Segoe UI",system-ui,sans-serif;font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1060px;margin:0 auto;padding:0 20px}
+h1,h2,h3{font-family:"Unbounded","Golos Text",system-ui,sans-serif;font-weight:600;text-wrap:balance;margin:0}
+h1{font-size:clamp(30px,5.2vw,52px);line-height:1.06;letter-spacing:-.02em}
+h2{font-size:clamp(22px,3.2vw,30px);line-height:1.15;letter-spacing:-.01em}
+h3{font-size:17px;letter-spacing:-.005em}
+p{margin:0}
+a{color:inherit}
+
+.stripe{display:flex;height:5px;width:100%}
+.stripe i{flex:1}
+.stripe i:nth-child(1){background:var(--s-blue)}
+.stripe i:nth-child(2){background:var(--s-green)}
+.stripe i:nth-child(3){background:var(--s-yellow)}
+.stripe i:nth-child(4){background:var(--s-red)}
+
+header.top{position:sticky;top:0;z-index:20;border-bottom:1px solid var(--line);
+  background:var(--paper); /* запасной вариант: без него старые Safari и Chrome оставят шапку прозрачной */
+  background:color-mix(in srgb,var(--paper) 88%,transparent);
+  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.topbar{display:flex;align-items:center;flex-wrap:wrap;gap:8px 16px;justify-content:space-between;padding:12px 20px;max-width:1060px;margin:0 auto}
+.brand{display:flex;align-items:center;gap:10px;font-family:"Unbounded","Golos Text",sans-serif;font-weight:600;font-size:15px;letter-spacing:-.01em;white-space:nowrap}
+.b-long{display:none}
+@media(min-width:560px){.b-long{display:inline}}
+/* на самых узких экранах кнопка в шапке ужимается до одного слова */
+.btn-long{display:none}
+@media(min-width:480px){.btn-long{display:inline}}
+.lens{width:22px;height:22px;border-radius:50%;border:3px solid var(--accent);position:relative;flex:none}
+.lens::after{content:"";position:absolute;inset:4px;border-radius:50%;background:var(--ink)}
+.nav{display:flex;gap:20px;font-size:14px;color:var(--ink-2)}
+.nav a{text-decoration:none;white-space:nowrap}
+/* ниже 900px меню переезжает на свою строку и листается вбок, а не пропадает */
+@media(max-width:899px){
+  .topbar{padding:10px 16px}
+  .nav{order:3;flex:1 0 100%;gap:18px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .nav::-webkit-scrollbar{display:none}
+}
+.nav a:hover{color:var(--accent)}
+
+.btn{display:inline-flex;align-items:center;gap:8px;justify-content:center;
+  background:var(--accent);color:var(--accent-ink);text-decoration:none;
+  font-weight:600;font-size:15px;padding:11px 20px;border-radius:999px;border:0;cursor:pointer;
+  transition:transform .12s ease, filter .12s ease}
+.btn:hover{filter:brightness(1.06);transform:translateY(-1px)}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.btn.sm{padding:8px 15px;font-size:14px}
+a:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+.hero{display:grid;gap:34px;padding:44px 0 10px}
+@media(min-width:900px){.hero{grid-template-columns:1.05fr .95fr;align-items:center;padding:60px 0 18px}}
+.eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.lead{margin-top:16px;font-size:17px;color:var(--ink-2);max-width:56ch}
+.hero-cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+
+.stack{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.pol{background:var(--surface);padding:10px 10px 34px;border:1px solid var(--line);border-radius:4px;box-shadow:var(--shadow);position:relative}
+.pol:nth-child(1){transform:rotate(-2.2deg)}
+.pol:nth-child(2){transform:rotate(1.6deg)}
+.pol:nth-child(3){transform:rotate(1.1deg);grid-column:span 2;justify-self:center;width:min(100%,320px)}
+.pol .ph{aspect-ratio:1/1;background:var(--surface-2);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.pol .ph img{width:100%;height:100%;object-fit:cover;display:block}
+.pol b{position:absolute;left:12px;bottom:9px;font-family:"Unbounded","Golos Text",sans-serif;font-size:11px;font-weight:400;color:var(--muted)}
+
+section{padding:46px 0}
+/* sticky-шапка: не даём ей перекрыть заголовок при переходе по якорю.
+   На десктопе она 68px, ниже 900px к ней добавляется строка меню — отсюда второе значение. */
+section[id]{scroll-margin-top:80px}
+@media(max-width:899px){section[id]{scroll-margin-top:126px}}
+.sec-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:22px}
+.sec-head p{color:var(--muted);font-size:14px}
+
+.table-scroll{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface)}
+/* на узких экранах таблица листается вбок — говорим об этом прямо */
+.scroll-hint{display:none;margin-top:8px;font-size:12.5px;color:var(--muted)}
+@media(max-width:760px){
+  .scroll-hint{display:block}
+  th,td{padding:12px 11px}
+}
+table{border-collapse:collapse;width:100%;min-width:660px;font-variant-numeric:tabular-nums}
+th,td{text-align:right;vertical-align:middle;padding:14px 16px;border-bottom:1px solid var(--line);white-space:nowrap}
+/* четыре колонки суток одной ширины */
+th:nth-child(n+2):nth-child(-n+5),td:nth-child(n+2):nth-child(-n+5){width:11%}
+th:first-child,td:first-child{text-align:left}
+/* «Далее» и «Залог» — по центру колонки */
+th:nth-child(n+7),td:nth-child(n+7){text-align:center}
+thead th{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600;background:var(--surface-2)}
+tbody tr:last-child td{border-bottom:0}
+td.model{font-family:"Unbounded","Golos Text",sans-serif;font-weight:600;font-size:14px}
+td.day1{font-weight:700;color:var(--accent);font-size:17px}
+.gift{color:var(--gift);font-weight:600;font-size:15px;white-space:nowrap}
+
+.gift-banner{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-top:18px;padding:16px 18px;
+  border-radius:var(--radius);background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--gift)}
+.gift-banner strong{font-family:"Unbounded","Golos Text",sans-serif;font-size:15px}
+.gift-banner span{color:var(--ink-2);font-size:14px}
+
+.models{display:grid;gap:18px}
+@media(min-width:760px){.models{grid-template-columns:repeat(3,1fr)}}
+.model-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column}
+.model-card .ph{aspect-ratio:4/3;background:#FFFFFF;display:flex;align-items:center;justify-content:center;padding:14px;border-bottom:1px solid var(--line)}
+.model-card .ph img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;display:block;mix-blend-mode:multiply}
+.model-card .ph span{font-size:11px;color:var(--muted);padding:10px;text-align:center}
+.model-body{padding:16px 18px 18px;display:flex;flex-direction:column;gap:10px;flex:1}
+.price-row{display:flex;align-items:baseline;gap:8px}
+.price{font-family:"Unbounded","Golos Text",sans-serif;font-size:26px;font-weight:600;letter-spacing:-.02em}
+.per{font-size:13px;color:var(--muted)}
+.meta{font-size:13px;color:var(--ink-2);display:flex;flex-direction:column;gap:4px;margin-top:auto}
+.meta i{font-style:normal;color:var(--muted)}
+.model-title{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.tag{white-space:nowrap;font-size:11px;font-weight:600;padding:3px 9px;border-radius:999px;background:var(--accent);color:var(--accent-ink)}
+
+.calc{display:grid;gap:0;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:var(--surface)}
+@media(min-width:820px){.calc{grid-template-columns:1.1fr .9fr}}
+.calc-form{padding:24px;display:flex;flex-direction:column;gap:18px}
+.field{display:flex;flex-direction:column;gap:8px}
+.field label{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.seg{display:flex;gap:8px;flex-wrap:wrap}
+.seg button{font-family:inherit;font-size:14px;font-weight:500;padding:9px 14px;border-radius:10px;
+  border:1px solid var(--line);background:var(--paper);color:var(--ink);cursor:pointer;transition:.12s}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.stepper{display:flex;align-items:center;flex-wrap:wrap;gap:10px 12px}
+.stepper button{width:38px;height:38px;border-radius:10px;border:1px solid var(--line);background:var(--paper);color:var(--ink);font-size:19px;cursor:pointer;line-height:1}
+.stepper input{width:76px;text-align:center;font-family:"Unbounded","Golos Text",sans-serif;font-size:19px;font-weight:600;
+  padding:7px 4px;border-radius:10px;border:1px solid var(--line);background:var(--paper);color:var(--ink)}
+/* убираем нативные стрелки: шаг задаётся кнопками − и + */
+.stepper input{-moz-appearance:textfield;appearance:textfield}
+.stepper input::-webkit-outer-spin-button,
+.stepper input::-webkit-inner-spin-button{-webkit-appearance:none;appearance:none;margin:0}
+.stepper em{font-style:normal;color:var(--muted);font-size:14px}
+/* «Свои» рядом со счётчиком: не квадратная, как − и + */
+.stepper .own{width:auto;height:38px;padding:0 16px;font-family:inherit;font-size:14px;font-weight:500;
+  border-radius:10px;border:1px solid var(--line);background:var(--paper);color:var(--ink);cursor:pointer;transition:.12s}
+.stepper .own[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.calc-out{padding:24px 24px 16px;background:var(--surface-2);display:flex;flex-direction:column;gap:12px}
+.out-line{display:flex;justify-content:space-between;gap:12px;font-size:14px;color:var(--ink-2);font-variant-numeric:tabular-nums}
+.out-line b{font-weight:600;color:var(--ink)}
+.out-total{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding-top:14px;margin-top:2px;border-top:1px solid var(--line)}
+.out-total span{font-size:13px;color:var(--muted)}
+.out-total b{font-family:"Unbounded","Golos Text",sans-serif;font-size:32px;font-weight:700;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.out-line.dep{padding-top:12px;font-size:13px;color:var(--muted)}
+.out-line.dep b{font-weight:600;color:var(--ink-2)}
+.out-total.grand{border-top:0;padding-top:4px}
+.out-total.grand b{font-size:22px;font-weight:600}
+.note{font-size:12.5px;color:var(--muted);line-height:1.45}
+.hint{font-size:13px;color:var(--ink-2)}
+.hint b{font-weight:600;color:var(--ink)}
+/* сноска прижата к низу колонки, чтобы обе половины калькулятора кончались вровень */
+.calc-form .note{margin-top:auto}
+.calc-out .note{margin-top:auto}
+
+.terms{display:grid;gap:14px}
+@media(min-width:700px){.terms{grid-template-columns:repeat(2,1fr)}}
+.term{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px}
+.term h3{margin-bottom:6px}
+.term p{font-size:14px;color:var(--ink-2)}
+.deposit-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.deposit-list span{font-size:13px;padding:5px 11px;border-radius:8px;background:var(--surface-2);border:1px solid var(--line);font-variant-numeric:tabular-nums}
+.cash{border-left:4px solid var(--s-yellow)}
+
+.gal{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+@media(min-width:700px){.gal{grid-template-columns:repeat(4,1fr)}}
+.gal .ph{aspect-ratio:1/1;border-radius:10px;overflow:hidden;background:var(--surface-2);border:1px solid var(--line)}
+.gal .ph img{width:100%;height:100%;object-fit:cover;display:block}
+
+.faq{display:grid;gap:10px}
+.qa{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:0 18px}
+.qa summary{cursor:pointer;list-style:none;padding:16px 34px 16px 0;position:relative;
+  font-family:"Unbounded","Golos Text",sans-serif;font-size:15px;font-weight:600;letter-spacing:-.005em}
+.qa summary::-webkit-details-marker{display:none}
+/* плюс, который превращается в минус */
+.qa summary::after{content:"";position:absolute;right:4px;top:50%;width:13px;height:2px;
+  background:var(--muted);border-radius:2px;transform:translateY(-50%)}
+.qa summary::before{content:"";position:absolute;right:9px;top:50%;width:2px;height:13px;
+  background:var(--muted);border-radius:2px;transform:translateY(-50%);transition:opacity .15s ease}
+.qa[open] summary::before{opacity:0}
+.qa[open] summary{color:var(--accent)}
+.qa[open] summary::after,.qa[open] summary::before{background:var(--accent)}
+.qa p{font-size:14px;color:var(--ink-2);padding:0 0 18px}
+
+.contacts{display:grid;gap:12px}
+@media(min-width:700px){.contacts{grid-template-columns:repeat(2,1fr)}}
+.contact{display:flex;align-items:center;gap:12px;background:var(--surface);border:1px solid var(--line);
+  border-radius:var(--radius);padding:14px 16px;text-decoration:none;transition:.12s}
+.contact:hover{border-color:var(--accent);transform:translateY(-1px)}
+.contact .k{font-size:12px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;font-weight:600}
+.contact .v{font-size:15px;font-weight:500}
+.contact .col{display:flex;flex-direction:column;gap:2px;min-width:0}
+.contact .v{overflow-wrap:anywhere}
+.ic{width:36px;height:36px;border-radius:10px;flex:none;display:grid;place-items:center;background:var(--surface-2);
+  font-family:"Unbounded","Golos Text",sans-serif;font-size:12px;font-weight:600;color:var(--ink-2)}
+
+.cta{background:var(--ink);color:var(--paper);border-radius:var(--radius);padding:34px 26px;text-align:center;
+  display:flex;flex-direction:column;align-items:center;gap:14px}
+.cta h2{color:var(--paper)}
+.cta p{color:color-mix(in srgb,var(--paper) 70%,transparent);font-size:15px;max-width:48ch}
+
+footer{margin-top:10px;padding:26px 0 48px;border-top:1px solid var(--line);
+  display:flex;align-items:center;justify-content:space-between;gap:16px 24px;flex-wrap:wrap}
+.f-brand{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--ink-2)}
+.f-brand .lens{width:16px;height:16px;border-width:2px}
+.f-links{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.f-links a{font-size:13px;color:var(--ink-2);text-decoration:none;padding:6px 12px;border-radius:999px;
+  border:1px solid var(--line);background:var(--surface);transition:.12s;white-space:nowrap}
+.f-links a:hover{color:var(--accent);border-color:var(--accent)}
+/* строка про оферту — на всю ширину, отдельным рядом под контактами */
+.f-legal{flex:1 0 100%;font-size:12px;color:var(--muted);line-height:1.45}
+
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+
+/* === Сенсорные экраны: зоны нажатия не меньше 44px === */
+@media (max-width:760px), (pointer:coarse){
+  .seg button{min-height:44px}
+  .stepper button{width:44px;height:44px}
+  .stepper .own{height:44px}
+  .stepper input{height:44px;width:68px}
+  .nav a{padding:8px 0}
+  .f-links a{padding:9px 14px}
+  .contact{padding:16px}
+  .btn{padding:13px 20px}
+  .btn.sm{padding:10px 15px}
+}
+
+/* === Запасные варианты для старых движков === */
+/* aspect-ratio появился в Safari 15 / Chrome 88: где его нет, держим пропорцию через padding */
+@supports not (aspect-ratio: 1 / 1){
+  .pol .ph,.gal .ph{position:relative;height:0;padding-top:100%}
+  .model-card .ph{position:relative;height:0;padding-top:75%}
+  .pol .ph img,.gal .ph img,.model-card .ph img{position:absolute;inset:0;margin:auto}
+}
+/* gap во флексе не работает в Safari до 14.1 — подстраховываемся отступами */
+@supports not (gap: 1px){
+  .hero-cta > *,.seg button,.deposit-list span,.f-links a{margin:0 8px 8px 0}
+  .stepper > *{margin-right:12px}
+}
+/* убираем синюю подсветку при тапе в мобильных WebKit */
+a,button,summary{-webkit-tap-highlight-color:rgba(225,74,51,.15)}
