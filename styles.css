@@ -92,6 +92,7 @@ a:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible{ou
 .pol:nth-child(3){transform:rotate(1.1deg);grid-column:span 2;justify-self:center;width:min(100%,320px)}
 .pol .ph{aspect-ratio:1/1;background:var(--surface-2);display:flex;align-items:center;justify-content:center;overflow:hidden}
 .pol .ph img{width:100%;height:100%;object-fit:cover;display:block}
+.ph picture{display:contents}
 .pol b{position:absolute;left:12px;bottom:9px;font-family:"Unbounded","Golos Text",sans-serif;font-size:11px;font-weight:400;color:var(--muted)}
 
 section{padding:46px 0}
@@ -186,8 +187,8 @@ td.day1{font-weight:700;color:var(--accent);font-size:17px}
 .term{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px}
 .term h3{margin-bottom:6px}
 .term p{font-size:14px;color:var(--ink-2)}
-.deposit-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
-.deposit-list span{font-size:13px;padding:5px 11px;border-radius:8px;background:var(--surface-2);border:1px solid var(--line);font-variant-numeric:tabular-nums}
+.deposit-list{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 0;padding:0;list-style:none}
+.deposit-list li{font-size:13px;padding:5px 11px;border-radius:8px;background:var(--surface-2);border:1px solid var(--line);font-variant-numeric:tabular-nums}
 .cash{border-left:4px solid var(--s-yellow)}
 
 .gal{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
@@ -210,7 +211,8 @@ td.day1{font-weight:700;color:var(--accent);font-size:17px}
 .qa[open] summary::after,.qa[open] summary::before{background:var(--accent)}
 .qa p{font-size:14px;color:var(--ink-2);padding:0 0 18px}
 
-.contacts{display:grid;gap:12px}
+.contacts{display:grid;gap:12px;margin:0;padding:0;list-style:none}
+.contacts li{display:grid}
 @media(min-width:700px){.contacts{grid-template-columns:repeat(2,1fr)}}
 .contact{display:flex;align-items:center;gap:12px;background:var(--surface);border:1px solid var(--line);
   border-radius:var(--radius);padding:14px 16px;text-decoration:none;transition:.12s}
@@ -231,7 +233,8 @@ footer{margin-top:10px;padding:26px 0 48px;border-top:1px solid var(--line);
   display:flex;align-items:center;justify-content:space-between;gap:16px 24px;flex-wrap:wrap}
 .f-brand{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--ink-2)}
 .f-brand .lens{width:16px;height:16px;border-width:2px}
-.f-links{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.f-links{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:0;padding:0;list-style:none}
+.f-links li{display:flex}
 .f-links a{font-size:13px;color:var(--ink-2);text-decoration:none;padding:6px 12px;border-radius:999px;
   border:1px solid var(--line);background:var(--surface);transition:.12s;white-space:nowrap}
 .f-links a:hover{color:var(--accent);border-color:var(--accent)}
@@ -262,7 +265,7 @@ footer{margin-top:10px;padding:26px 0 48px;border-top:1px solid var(--line);
 }
 /* gap во флексе не работает в Safari до 14.1 — подстраховываемся отступами */
 @supports not (gap: 1px){
-  .hero-cta > *,.seg button,.deposit-list span,.f-links a{margin:0 8px 8px 0}
+  .hero-cta > *,.seg button,.deposit-list li,.f-links li{margin:0 8px 8px 0}
   .stepper > *{margin-right:12px}
 }
 /* убираем синюю подсветку при тапе в мобильных WebKit */
