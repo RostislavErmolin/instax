@@ -52,7 +52,7 @@ header.top{position:sticky;top:0;z-index:20;border-bottom:1px solid var(--line);
   background:color-mix(in srgb,var(--paper) 88%,transparent);
   -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
 .topbar{display:flex;align-items:center;flex-wrap:wrap;gap:8px 16px;justify-content:space-between;padding:12px 20px;max-width:1060px;margin:0 auto}
-.brand{display:flex;align-items:center;gap:10px;font-family:"Unbounded","Golos Text",sans-serif;font-weight:600;font-size:15px;letter-spacing:-.01em;white-space:nowrap}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:"Unbounded","Golos Text",sans-serif;font-weight:600;font-size:15px;letter-spacing:-.01em;white-space:nowrap}
 .b-long{display:none}
 @media(min-width:560px){.b-long{display:inline}}
 /* на самых узких экранах кнопка в шапке ужимается до одного слова */
