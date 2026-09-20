@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<yml_catalog date="2026-09-20T18:00">
+<shop>
+  <name>Instax напрокат</name>
+  <company>Плетнева А. А.</company>
+  <url>https://instaxrent.ru</url>
+  <currencies>
+    <currency id="RUR" rate="1"/>
+  </currencies>
+  <categories>
+    <category id="1">Аренда фотоаппаратов Instax Mini</category>
+    <category id="2">Кадры для Instax Mini</category>
+    <category id="3">Дополнительно</category>
+  </categories>
+  <offers>
+
+    <offer id="mini-9">
+      <name>Аренда Instax Mini 9 — сутки</name>
+      <url>https://instaxrent.ru/#modeli</url>
+      <price>400</price>
+      <currencyId>RUR</currencyId>
+      <categoryId>1</categoryId>
+      <picture>https://instaxrent.ru/images/devices/model-mini-9.jpg</picture>
+      <description>Плёночный фотоаппарат моментальной печати Instax Mini 9. Зеркальце для селфи, ручная настройка яркости. 2 суток — 800 ₽, 3 — 1200 ₽, 4 — 1600 ₽, пятые сутки в подарок, далее 300 ₽/сутки. Залог 4000 ₽, возвращается при возврате камеры.</description>
+    </offer>
+
+    <offer id="mini-11">
+      <name>Аренда Instax Mini 11 — сутки</name>
+      <url>https://instaxrent.ru/#modeli</url>
+      <price>500</price>
+      <currencyId>RUR</currencyId>
+      <categoryId>1</categoryId>
+      <picture>https://instaxrent.ru/images/devices/model-mini-11.jpg</picture>
+      <description>Плёночный фотоаппарат моментальной печати Instax Mini 11. Автоэкспозиция, режим селфи одним движением. 2 суток — 1000 ₽, 3 — 1500 ₽, 4 — 2000 ₽, пятые сутки в подарок, далее 400 ₽/сутки. Залог 5000 ₽, возвращается при возврате камеры.</description>
+    </offer>
+
+    <offer id="mini-12">
+      <name>Аренда Instax Mini 12 — сутки</name>
+      <url>https://instaxrent.ru/#modeli</url>
+      <price>600</price>
+      <currencyId>RUR</currencyId>
+      <categoryId>1</categoryId>
+      <picture>https://instaxrent.ru/images/devices/model-mini-12.jpg</picture>
+      <description>Плёночный фотоаппарат моментальной печати Instax Mini 12. Поворотный объектив и режим макро. 2 суток — 1200 ₽, 3 — 1800 ₽, 4 — 2400 ₽, пятые сутки в подарок, далее 500 ₽/сутки. Есть две камеры — на большое мероприятие можно взять обе. Залог 6000 ₽, возвращается при возврате камеры.</description>
+    </offer>
+
+    <offer id="frames-10">
+      <name>Кадры Instax Mini — 10 штук</name>
+      <url>https://instaxrent.ru/#tarify</url>
+      <price>1700</price>
+      <currencyId>RUR</currencyId>
+      <categoryId>2</categoryId>
+      <picture>https://instaxrent.ru/images/photos/photo-04.jpg</picture>
+      <description>Плёнка Fujifilm Instax Mini, 10 кадров — 170 ₽ за кадр. Выдаём вместе с камерой, свою плёнку тоже можно.</description>
+    </offer>
+
+    <offer id="frames-20">
+      <name>Кадры Instax Mini — 20 штук</name>
+      <url>https://instaxrent.ru/#tarify</url>
+      <price>3300</price>
+      <currencyId>RUR</currencyId>
+      <categoryId>2</categoryId>
+      <picture>https://instaxrent.ru/images/photos/photo-04.jpg</picture>
+      <description>Плёнка Fujifilm Instax Mini, 20 кадров — 165 ₽ за кадр.</description>
+    </offer>
+
+    <offer id="frames-30">
+      <name>Кадры Instax Mini — 30 штук</name>
+      <url>https://instaxrent.ru/#tarify</url>
+      <price>4800</price>
+      <currencyId>RUR</currencyId>
+      <categoryId>2</categoryId>
+      <picture>https://instaxrent.ru/images/photos/photo-04.jpg</picture>
+      <description>Плёнка Fujifilm Instax Mini, 30 кадров — 160 ₽ за кадр.</description>
+    </offer>
+
+    <offer id="frames-50">
+      <name>Кадры Instax Mini — 50 штук</name>
+      <url>https://instaxrent.ru/#tarify</url>
+      <price>7500</price>
+      <currencyId>RUR</currencyId>
+      <categoryId>2</categoryId>
+      <picture>https://instaxrent.ru/images/photos/photo-04.jpg</picture>
+      <description>Плёнка Fujifilm Instax Mini, 50 кадров — 150 ₽ за кадр.</description>
+    </offer>
+
+    <offer id="frames-100">
+      <name>Кадры Instax Mini — 100 штук</name>
+      <url>https://instaxrent.ru/#tarify</url>
+      <price>12500</price>
+      <currencyId>RUR</currencyId>
+      <categoryId>2</categoryId>
+      <picture>https://instaxrent.ru/images/photos/photo-04.jpg</picture>
+      <description>Плёнка Fujifilm Instax Mini, 100 кадров — 125 ₽ за кадр, самая выгодная цена.</description>
+    </offer>
+
+    <offer id="booking">
+      <name>Бронирование даты</name>
+      <url>https://instaxrent.ru/#usloviya</url>
+      <price>350</price>
+      <currencyId>RUR</currencyId>
+      <categoryId>3</categoryId>
+      <description>Оплачивается сверх стоимости аренды. В момент подтверждения день закрепляется за вами и снимается с продажи.</description>
+    </offer>
+
+  </offers>
+</shop>
+</yml_catalog>
