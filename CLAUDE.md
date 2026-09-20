@@ -11,7 +11,7 @@ index.html        markup only
 styles.css        all styling, incl. theme tokens and responsive rules
 script.js         the rental calculator
 fonts.css         @font-face for the two self-hosted families
-fonts/            28 woff2 subsets: Unbounded 400/600/700 (без latin-ext), Golos Text 400/500/600/700
+fonts/            5 woff2 — variable fonts, one file covers every weight: Unbounded (cyrillic, latin), Golos Text (cyrillic, latin, latin-ext — the latter only for ₽)
 images/
   devices/        model-mini-{9,11,12}.jpg — 1200x900, camera on white, all facing the same way
   photos/         photo-01..15.jpg — 01-03 are the hero polaroids, 04-15 the gallery
