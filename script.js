@@ -3,9 +3,10 @@ const FRAMES = {0:0, 10:1700, 20:3300, 30:4800, 40:6200, 50:7500, 60:8700, 70:98
 const BOOKING = 350;
 
 const DATA = {
-  9:  {name:"Instax Mini 9",  steps:[400,800,1200,1600], extra:300, dep:4000},
-  11: {name:"Instax Mini 11", steps:[500,1000,1500,2000], extra:400, dep:5000},
-  12: {name:"Instax Mini 12", steps:[600,1200,1800,2400], extra:500, dep:6000}
+  9:  {name:"Instax Mini 9",  steps:[400,800,1200,1600], extra:300, dep:3000},
+  11: {name:"Instax Mini 11", steps:[500,1000,1500,2000], extra:400, dep:4000},
+  12: {name:"Instax Mini 12", steps:[600,1200,1800,2400], extra:500, dep:5000},
+  3:  {name:"Instax Mini Link 3", steps:[800,1600,2400,3200], extra:700, dep:6000}
 };
 let model = 12, days = 2, frames = 0, two = false;
 
