@@ -160,6 +160,7 @@
       <div class="switch"><a href="index.html">Аренда</a><a class="is-active" href="print.html" aria-current="page">Печать</a></div>
       <a href="#kak">Как заказать</a>
       <a href="#tseny">Цены</a>
+      <a href="#kalkulyator">Калькулятор</a>
       <a href="#format">Формат</a>
       <a href="#dostavka">Доставка</a>
       <a href="#voprosy">Вопросы</a>
@@ -246,6 +247,33 @@
     <div class="gift-banner">
       <strong>Всё включено</strong>
       <span>В цену входят плёнка, печать и бесплатная коррекция фото. Никаких доплат.</span>
+    </div>
+  </section>
+
+  <section id="kalkulyator">
+    <div class="sec-head">
+      <h2>Калькулятор печати</h2>
+      <p>Укажите количество — посчитаю стоимость печати сразу.</p>
+    </div>
+    <div class="calc">
+      <div class="calc-form">
+        <div class="field">
+          <label for="pc-qty">Сколько фото</label>
+          <div class="stepper">
+            <button type="button" id="pc-minus" aria-label="Убрать фото">−</button>
+            <input id="pc-qty" type="number" min="1" max="1000" value="10" inputmode="numeric">
+            <button type="button" id="pc-plus" aria-label="Добавить фото">+</button>
+            <em>фото</em>
+          </div>
+        </div>
+        <p class="note">Чем больше фото — тем дешевле каждое. Доставка оплачивается отдельно.</p>
+      </div>
+      <div class="calc-out">
+        <div class="out-line"><span>Цена за фото</span><b id="pc-per">180 ₽</b></div>
+        <div class="out-total"><span>Итого за печать</span><b id="pc-total">1 800 ₽</b></div>
+        <p class="note">Входят плёнка, печать и бесплатная коррекция.</p>
+        <a class="btn" data-t="печать · калькулятор · telegram" href="https://t.me/pltnv_a" target="_blank" rel="noopener">Отправить фото в Telegram</a>
+      </div>
     </div>
   </section>
 
@@ -405,6 +433,29 @@
       }
     }
   }, { threshold: 0.35 }).observe(scene);
+})();
+</script>
+
+<script>
+/* Калькулятор печати: количество фото → цена за штуку по тарифу → итог */
+(function () {
+  var qty = document.getElementById('pc-qty');
+  if (!qty) return;
+  var per = document.getElementById('pc-per'), total = document.getElementById('pc-total');
+  function priceFor(n) { return n >= 30 ? 170 : n >= 10 ? 180 : n >= 5 ? 190 : 200; }
+  function fmt(n) { return Math.round(n).toLocaleString('ru-RU').replace(/ /g, ' ') + ' ₽'; }
+  function clamp(v) { return Math.min(1000, Math.max(1, v || 1)); }
+  function render() {
+    var n = clamp(parseInt(qty.value, 10));
+    var p = priceFor(n);
+    per.textContent = fmt(p);
+    total.textContent = fmt(n * p);
+  }
+  document.getElementById('pc-minus').addEventListener('click', function () { qty.value = clamp(parseInt(qty.value, 10) - 1); render(); });
+  document.getElementById('pc-plus').addEventListener('click', function () { qty.value = clamp(parseInt(qty.value, 10) + 1); render(); });
+  qty.addEventListener('input', render);
+  qty.addEventListener('blur', function () { qty.value = clamp(parseInt(qty.value, 10)); render(); });
+  render();
 })();
 </script>
 
