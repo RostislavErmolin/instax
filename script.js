@@ -1,5 +1,5 @@
 /* === Стоимость кадров. Ключ – количество кадров. === */
-const FRAMES = {0:0, 10:1700, 20:3300, 30:4800, 40:6200, 50:7500, 60:8700, 70:9800, 80:10800, 90:11700, 100:12500};
+const FRAMES = {0:0, 10:1700, 20:3300, 30:4800, 40:6200, 50:7500, 60:8700, 70:9800, 80:10800, 90:11700, 100:12500, 110:13750, 120:15000, 130:16250, 140:17500, 150:18750, 160:20000, 170:21250, 180:22500, 190:23750, 200:25000, 210:26250, 220:27500, 230:28750, 240:30000, 250:31250, 260:32500, 270:33750, 280:35000, 290:36250, 300:37500};
 const BOOKING = 350;
 
 const DATA = {
@@ -58,11 +58,11 @@ document.querySelectorAll("#seg-model button").forEach(b =>
     render();
   }));
 const framesInput = $("frames");
-const setFrames = n => { frames = Math.min(100, Math.max(0, Math.round(n / 10) * 10)); render(); };
+const setFrames = n => { frames = Math.min(300, Math.max(0, Math.round(n / 10) * 10)); render(); };
 framesInput.addEventListener("input", e => {
   const v = parseInt(e.target.value, 10);
   if (isNaN(v)) return;
-  frames = Math.min(100, Math.max(0, Math.round(v / 10) * 10));
+  frames = Math.min(300, Math.max(0, Math.round(v / 10) * 10));
   render();
 });
 framesInput.addEventListener("blur", () => { framesInput.value = frames; });
